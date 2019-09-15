@@ -1,9 +1,9 @@
-## Welcome to GitHub Pages
+## True Crime Collection
 
-You can use the [editor on GitHub](https://github.com/butterontoasts/true-crime/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+A collection of true crime stories scraped from different websites.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
+<Add sample killer quotes and summary here>
+  
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
