@@ -2,7 +2,10 @@
 
 A collection of true crime stories scraped from different websites.
 
-<Add sample killer quotes and summary here>
+"The dead won't bother you, it's the living you have to worry about."
+                                                              — Gacy
+
+John Wayne Gacy, Jr., a.k.a. "The Killer Clown", was an American ephebophilic and necrophilic serial killer, rapist, and abductor.
   
 ### Markdown
 
