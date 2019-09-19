@@ -14,20 +14,21 @@ for page in range(1, pages + 1):
     else:
         url = "https://www.bizarrepedia.com/crime/page/" + str(page)
  
-    # Retrieve each article
+    # Retrieve each story
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "lxml")
-    articles = soup.find_all("article", {"class": "not_mod"})
+    stories = soup.find_all("a", {"class": "bx"})
 
-    for article in articles:
-        # Retrieve each story
-        response = requests.get(article.a["href"])
+    for story in stories:
+        response = requests.get(story["href"])
         soup = BeautifulSoup(response.text, "lxml")
         subject = soup.find("h1", {"class": "entry"}).text
-        story = soup.find("div", {"class": "typography"})
-        blocks = story.find_all("p")
+        main_story = soup.find("div", {"class": "typography"})
+        blocks = main_story.find_all("p")
+        full_story = ""
 
         for block in blocks:
-            print(block.text + "\n")
+            full_story = full_story + block.text + "\n\n"
+        print(subject + "\n\n" + full_story)
         break
     break
