@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from elastic import *
+from modules.elastic import *
 
 
 # Retrieve all stories

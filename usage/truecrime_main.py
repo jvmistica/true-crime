@@ -1,5 +1,5 @@
 import re
-from elastic import *
+from modules.elastic import *
 
 
 def display_prompt():

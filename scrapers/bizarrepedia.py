@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from modules.elastic import es_insert
 
 
 # Retrieve all pages
@@ -30,5 +31,4 @@ for page in range(1, pages + 1):
         for block in blocks:
             full_story = full_story + block.text + "\n\n"
         print(subject + "\n\n" + full_story)
-        break
-    break
+        es_insert("truecrime", "bizarrepedia", subject, full_story)
