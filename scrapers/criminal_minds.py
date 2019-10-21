@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
-from modules.elastic import *
+import sys, os
+sys.path.append(os.path.abspath(os.path.join('..', 'modules')))
+from elastic import *
 
 
 # Retrieve all stories

@@ -1,6 +1,8 @@
 import re
-from modules.elastic import es_search, es_update
-from modules.extract import get_arrest_date
+import sys, os
+sys.path.append(os.path.abspath(os.path.join('..', 'modules')))
+from elastic import es_search, es_update
+from extract import get_arrest_date
 
 
 for val in es_search():
