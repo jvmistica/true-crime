@@ -1,7 +1,7 @@
 import re
 import sys, os
 sys.path.append(os.path.abspath(os.path.join('..', 'modules')))
-from elastic import *
+from elastic import es_search
 
 
 def display_prompt():
@@ -9,7 +9,7 @@ def display_prompt():
     print("   v - view all")
     print("   s - search\n")
     
-    return input("Option:").lower()
+    return input("Option: ").lower()
 
 def display_result(result):
     for ndx, val in enumerate(result):
@@ -25,15 +25,15 @@ def display_search():
     print("    n - search by subject name")
     print("    p - search for phrase(s) in stories\n")
 
-    search = input("Search:").lower()
+    search = input("Search: ").lower()
     if search == "s":
-        search_term = input("Story Source:")
+        search_term = input("Story Source: ")
         display_result(es_search(source=search_term))
     elif search == "n":
-        search_term = input("Subject Name:")
+        search_term = input("Subject Name: ")
         display_result(es_search(subject=search_term))
     elif search == "p":
-        search_term = input("Phrase(s) in Stories:")
+        search_term = input("Phrase(s) in Stories: ")
         resno = 1
         for val in es_search(story=search_term):
             for result in re.finditer(r'(\w+\W+){0,10}' + search_term +'\s+(\w+\W+){0,10}' \
@@ -44,12 +44,13 @@ def display_search():
         print("\nInvalid search option. Please try again.")
         display_search()
 
-
-option = display_prompt()
-if option == "v":
-    display_result(es_search())
-elif option == "s":
-    display_search()
-else:
-    print("\nInvalid option. Please try again.\n")
-    display_prompt()
+while True:
+    option = display_prompt()
+    if option == "v":
+        display_result(es_search())
+    elif option == "s":
+        display_search()
+    else:
+        print("\nInvalid option. Please try again.\n")
+        continue
+    break
