@@ -1,7 +1,8 @@
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join('..', 'modules')))
 import requests
 from bs4 import BeautifulSoup
-import sys, os
-sys.path.append(os.path.abspath(os.path.join('..', 'modules')))
 from elastic import es_insert
 
 
@@ -16,7 +17,7 @@ for page in range(1, pages + 1):
         url = "https://www.bizarrepedia.com/crime"
     else:
         url = "https://www.bizarrepedia.com/crime/page/" + str(page)
- 
+
     # Retrieve each story
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "lxml")

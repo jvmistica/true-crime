@@ -1,5 +1,6 @@
+import os
 import re
-import sys, os
+import sys
 sys.path.append(os.path.abspath(os.path.join('..', 'modules')))
 from elastic import es_search
 
@@ -8,7 +9,7 @@ def display_prompt():
     print("\n----- OPTIONS -----")
     print("   v - view all")
     print("   s - search\n")
-    
+
     return input("Option: ").lower()
 
 def display_result(result):
@@ -36,7 +37,7 @@ def display_search():
         search_term = input("Phrase(s) in Stories: ")
         resno = 1
         for val in es_search(story=search_term):
-            for result in re.finditer(r'(\w+\W+){0,10}' + search_term +'\s+(\w+\W+){0,10}' \
+            for result in re.finditer(r'(\w+\W+){0,10}' + search_term + r'\s+(\w+\W+){0,10}' \
                                  , val.get("story"), flags=re.I):
                 print("Result", resno, "\n", " ".join(result.group().split("\n")))
                 resno += 1

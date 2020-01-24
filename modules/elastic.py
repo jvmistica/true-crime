@@ -14,9 +14,9 @@ def es_insert(category, source, subject, story, **extras):
     print(res["result"])
 
 
-def es_update(category, id, **extras):
-    body = {"body": {"doc" : { **extras, } } }
-    res = es.update(index=category, doc_type="story", id=id, body=body)
+def es_update(category, record_id, **extras):
+    body = {"body": {"doc": {**extras,}}}
+    res = es.update(index=category, doc_type="story", id=record_id, body=body)
     print(res["result"])
 
 
@@ -26,10 +26,11 @@ def es_search(**filters): #added id
     search_terms = list()
     for key, value in filters.items():
         search_terms.append({"match": {key: value}})
- 
+
     print("Search terms:", search_terms)
     size = es.count(index="truecrime").get("count")
-    res = es.search(index="truecrime", size=size, body=json.dumps({"query": {"bool": {"must": search_terms}}}))
+    res = es.search(index="truecrime", size=size, \
+                    body=json.dumps({"query": {"bool": {"must": search_terms}}}))
     for hit in res["hits"]["hits"]:
         result = {"total": res["hits"]["total"], \
                         "id": hit["_id"], \

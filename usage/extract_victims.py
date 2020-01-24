@@ -1,6 +1,7 @@
+import os
 import re
+import sys
 import spacy
-import sys, os
 sys.path.append(os.path.abspath(os.path.join('..', 'modules')))
 from elastic import es_search, es_update
 nlp = spacy.load("en_core_web_sm")
@@ -8,7 +9,8 @@ nlp = spacy.load("en_core_web_sm")
 
 for val in es_search():
     victims = list()
-    for result in re.finditer(r'(\w+\W+){0}victims?\s?(,|is|are|was|were)\s(\w+\W+){1,6}', val.get("story"), flags=re.I):
+    for result in re.finditer(r'(\w+\W+){0}victims?\s?(,|is|are|was|were)\s(\w+\W+){1,6}', \
+                                val.get("story"), flags=re.I):
         doc = nlp(result.group())
         for entity in doc.ents:
             if entity.label_ == "PERSON":
