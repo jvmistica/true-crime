@@ -4,6 +4,11 @@ es = Elasticsearch()
 
 
 def es_insert(category, source, subject, story, **extras):
+    """
+    Inserts a new record to the Elasticsearch index.
+
+    """
+
     doc = {
         "source": source,
         "subject": subject,
@@ -15,12 +20,22 @@ def es_insert(category, source, subject, story, **extras):
 
 
 def es_update(category, record_id, **extras):
+    """
+    Updates an existing record.
+
+    """
+
     body = {"body": {"doc": {**extras,}}}
     res = es.update(index=category, doc_type="story", id=record_id, body=body)
     print(res["result"])
 
 
-def es_search(**filters): #added id
+def es_search(**filters):
+    """
+    Searches for specific record(s).
+
+    """
+
     result = dict()
     result_set = list()
     search_terms = list()

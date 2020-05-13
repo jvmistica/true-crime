@@ -1,7 +1,7 @@
 import os
 import sys
-sys.path.append(os.path.abspath(os.path.join('..', 'modules')))
 import requests
+sys.path.append(os.path.abspath(os.path.join('..', 'modules')))
 from bs4 import BeautifulSoup
 from elastic import es_insert
 
