@@ -3,6 +3,8 @@ Scrape information from true crime websites and use them to analyze and recogniz
 
 ## Getting Started
 
+Download and install Elassticsearch from https://www.elastic.co/downloads/elasticsearch.
+
 Install the required modules:
 ```
 pip install -r requirements.txt
